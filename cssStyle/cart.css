@@ -1,0 +1,91 @@
+body{
+    text-align: center;
+    height: auto;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+table{
+    text-align: center;
+    border: 2px solid orange;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+}
+
+th,td{
+    padding: 20px;
+}
+th{
+    font-size: 25px;
+    font-weight: bold;
+}
+.clearcart{
+    background-color: orangered;
+    text-decoration: none;
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 10;
+    padding: 2px;
+    margin-top: 1%;
+    color: white;
+}
+.checkout{
+    background-color: rgb(192, 86, 253);
+    text-decoration: none;
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 150;
+    padding: 2px;
+    margin-top: 1%;
+    color: white;
+}
+.productname{
+    text-align: start;
+}
+.price{
+    text-align: start;
+}
+#quant{
+    text-align: center;
+    width: 30px;
+}
+.emptycart{
+    font-size: 40px;
+    font-weight: bold;
+    color: blue;
+    background-color: rgb(180, 247, 183);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 300;
+    right: 500;
+}
+.removeitem{
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    padding: 5px;
+}
+.purchaseitem{
+    background-color: rgb(8, 122, 65);
+    text-decoration: none;
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    right: 300;
+    padding: 2px;
+    margin-top: 1%;
+    color: white;
+}

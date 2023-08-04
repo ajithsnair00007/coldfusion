@@ -1,12 +1,12 @@
-<cfcomponent>
+ <cfcomponent> 
 
   <cffunction name="updateProductQuantity" access="remote" returntype="string" returnformat="json">
     <cfargument name="action" type="string" required="true">
     <cfargument name="item" type="string" required="true">
 
-    <cfset var response = {}>
-
-    <cfset var product = session.cart[arguments.item]>
+    <cfset  response = {}>
+    
+    <cfset  product = session.cart[arguments.item]>
 
     <cfif arguments.action EQ "plus">
       <cfset product.quantity = product.quantity + 1>
@@ -14,19 +14,26 @@
       <cfset product.quantity = product.quantity - 1>
     </cfif>
 
-    <cfset var total = product.price * product.quantity>
-
-     <!--- <cfset session.cart[arguments.item] = product> --->
+    <cfset  total = product.price * product.quantity>
+    
+    
 
     <cfset response.STATUS = true>
     <cfset response.QUANTITY = product.quantity>
     <cfset response.TOTAL = total>
     <cfset response.ID = product.productid>
+    <cfset totalSum = 0> 
+        <cfloop collection="#Session.cart#" item="cartItem"> 
+            <cfset var cartProduct = session.cart[cartItem]>
+            <cfset totalSum += cartProduct.price * cartProduct.quantity>
+        </cfloop>
+        <cfset response.TOTALSUM = totalSum>
+    
    <!---  to convert to json data  --->
     <cfreturn serializeJSON(response)>
   </cffunction>
 
-</cfcomponent>
+</cfcomponent> 
 
 
 

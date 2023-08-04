@@ -11,6 +11,13 @@
     <cfelseif isDefined('error')> 
         <p class="errormsg" style="color:red;">recheck email and password</p>
     </cfif>
+
+    <cfif isDefined('message')>
+         <div id="formsuccess_message" style="color:red;">
+            <cfoutput>#url.message#
+            </cfoutput>
+         </div>
+   </cfif>
    
    <h1>LOGIN</h1>
      <form action="logUser.cfm" method="post" onsubmit="return validateform()">

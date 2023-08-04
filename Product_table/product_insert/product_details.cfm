@@ -7,6 +7,11 @@
 
 </head>
 <body>
+    <cfset isAuthenticated = structKeyExists(Session, "userid")>
+    <cfif isAuthenticated>
+       <button class="managecp"><a href="../../Admin/Coupons/cfm/coupon_display.cfm">Manage Coupon</a></button>
+    </cfif>
+    
     <div class="successMessage">
     
     <cfparam name="url.successMessage" default="">
@@ -49,8 +54,8 @@
                         <cfelse>
                             Inactive
                         </cfif>
-                    <td><img src="#image_path#" alt="" width="100" height="100"></td>    
                     </td>
+                    <td><img src="#image_path#" alt="" width="100" height="100"></td>    
                     <td><button class="edit_button"><a href="edit_products.cfm?id=#product_id#">Edit</a></button></td>
                     <td>
                        <cfif is_active>

@@ -1,4 +1,4 @@
-<cfcomponent>
+ <cfcomponent> 
    <cffunction name="addToCart" access="remote" returntype="string">
       <cfargument name="productid" type="numeric" required="true">
       <cfargument name="productname" type="string" required="true">
@@ -8,8 +8,12 @@
       <cfset response = {}>
       
       <cflock scope="Session">
+
+        <cfif not isDefined('cart')> 
+           <cfset cart = {}>
+        </cfif>
         
-        <cfif not structKeyExists(Session, "cart")>
+         <cfif not structKeyExists(Session, "cart")> 
             <cfset Session.cart = {}>
         <cfelse>
             <cfset cart = Session.cart>
@@ -36,7 +40,7 @@
       <!---success response--->
         <cfset response['status'] = true>
         <cfset response['message'] = "Product added to cart!">
-        <cfset response['ID'] = cart[productid].productid>
+        <cfset response['ID'] = arguments.productid>
         
         <!--- Return response as JSON --->
         <cfreturn serializeJSON(response)>

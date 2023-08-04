@@ -1,6 +1,83 @@
+<cfoutput>
+<html>
+<head>
+    <!-- ... your existing head content ... -->
+    <style>
+        /* Styling for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... your existing content ... -->
+    
+    <h1>Your Cart</h1>
+    <button class="gobackbtn" id="gobackbtn">GoBack</button>
 
+    <div class="popup" id="couponPopup">
+        <h2>Coupon Details</h2>
+        <!-- Coupon details will be dynamically added here using JavaScript -->
+    </div>
 
+    <table>
+        <!-- ... your existing table content ... -->
+    </table>
 
+    <!-- ... your existing buttons and elements ... -->
 
+    <script>
+    $(document).ready(function() {
+        // ... your existing JavaScript code ...
 
+        // Function to show the coupon popup
+        function showCouponPopup(couponDetails) {
+            var popupContent = '<h2>Coupon Details</h2>';
+            $.each(couponDetails, function(index, value) {
+                popupContent += '<p><strong>Coupon Name:</strong> ' + value.COUPON_NAME + '</p>' +
+                                '<p><strong>Coupon Code:</strong> ' + value.COUPON_CODE + '</p>' +
+                                '<p><strong>Coupon Type:</strong> ' + value.COUPON_TYPE + '</p>' +
+                                '<p><strong>Coupon Offer:</strong> ' + value.COUPON_OFFER + '</p>';
+            });
 
+            $('#couponPopup').html(popupContent);
+            $('#couponPopup').show();
+        }
+
+        // ... your existing event handlers ...
+
+        // Event handler to retrieve and show coupon details in the popup
+        $(document).on('click', '.applycp', function(){
+            const id = $(this).data("id");
+
+            $.ajax({
+                type: 'POST',
+                url: '../../Admin/Coupons/cfc/add_coupon.cfc?method=retrieveCoupon',
+                data: {
+                    id: id
+                },
+                datatype: 'json',
+                success: function(couponDetails) {
+                    var result = JSON.parse(couponDetails);
+
+                    if (result) {
+                        showCouponPopup(result);
+                    }
+                }
+            });
+        });
+
+        // ... your existing event handlers ...
+    });
+    </script>
+</body>
+</html>
+</cfoutput>
